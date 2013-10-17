@@ -13,14 +13,14 @@ To call a web API, you invoke that web API, passing in the arguments it needs
 as a free-form array of objects plus a callback which will be invoked with the
 result.  E.g.
 
-public enum TestAPI implements WebCallEnum {
-    HELLO_WORLD(new WebCallBuilder()
-                        .method(Method.GET)
-                        .addRequiredType(UserId.class)
-                        .withDecorator(DisplayName.class, ParameterFromClassNameAndToStringCamelCase.class)
-                        .path("/users/{{userid}}/hello").responseType(Map.class)),
-    ...
-}
+    public enum TestAPI implements WebCallEnum {
+        HELLO_WORLD(new WebCallBuilder()
+                            .method(Method.GET)
+                            .addRequiredType(UserId.class)
+                            .withDecorator(DisplayName.class, ParameterFromClassNameAndToStringCamelCase.class)
+                            .path("/users/{{userid}}/hello").responseType(Map.class)),
+        ...
+    }
 
 That defines an HTTP call which issues a ``GET`` request;  a portion of the URL
 is templated - it will be gotten from calling ``toString()`` on a ``UserId`` object
