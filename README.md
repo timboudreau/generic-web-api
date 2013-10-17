@@ -18,7 +18,7 @@ result.  E.g.
         .addRequiredType(String.class)
         .addRequiredType(UserId.class)
         .withDecorator(String.class, BodyFromString.class)
-        .path(&quot;/users/{{userid}}/echo&quot;).responseType(String.class));
+        .path("/users/{{userid}}/echo").responseType(String.class));
 
 
 ## Background
@@ -81,13 +81,13 @@ echoes back the request body sent to it.
 		                .method(Method.GET)
 		                .addRequiredType(UserId.class)
 		                .withDecorator(DisplayName.class, ParameterFromClassNameAndToStringCamelCase.class)
-		                .path(&quot;/users/{{userid}}/hello&quot;).responseType(Map.class)),
+		                .path("/users/{{userid}}/hello").responseType(Map.class)),
 	    ECHO(new WebCallBuilder()
 		                .method(Method.POST)
 		                .addRequiredType(String.class)
 		                .addRequiredType(UserId.class)
 		                .withDecorator(String.class, BodyFromString.class)
-		                .path(&quot;/users/{{userid}}/echo&quot;).responseType(String.class));
+		                .path("/users/{{userid}}/echo").responseType(String.class));
 
 	    private final WebCall call;
 	    TestAPI(WebCallBuilder bldr) {
@@ -104,7 +104,7 @@ How do we use it?  Very simply.  First, we need an instance of an
 ``Invoker``;  you can either
 create one using Guice (you need to bind a base URL and an HttpClient),
 or use a static method to have it do that for you:
-	    Invoker&lt;TestAPI&gt; invoker = Invoker.create(URL.parse(&quot;http://server.example&quot;), 
+	    Invoker&lt;TestAPI&gt; invoker = Invoker.create(URL.parse("http://server.example"), 
 		TestAPI.class);
 
 		Then we need a callback which will be
