@@ -18,7 +18,7 @@ result.  E.g.
         .addRequiredType(String.class)
         .addRequiredType(UserId.class)
         .withDecorator(String.class, BodyFromString.class)
-        .path(&quot;/users/&lcub;&lcub;userid&rcub;&rcub;/echo&quot;).responseType(String.class));
+        .path(&quot;/users/{{userid}}/echo&quot;).responseType(String.class));
 
 
 ## Background
@@ -75,29 +75,29 @@ web calls.
 Here's a sample API with two calls, one which says hello and one which
 echoes back the request body sent to it.
 
-    public enum TestAPI implements WebCallEnum &lcub;
+    public enum TestAPI implements WebCallEnum {
 
 	    HELLO_WORLD(new WebCallBuilder()
 		                .method(Method.GET)
 		                .addRequiredType(UserId.class)
 		                .withDecorator(DisplayName.class, ParameterFromClassNameAndToStringCamelCase.class)
-		                .path(&quot;/users/&lcub;&lcub;userid&rcub;&rcub;/hello&quot;).responseType(Map.class)),
+		                .path(&quot;/users/{{userid}}/hello&quot;).responseType(Map.class)),
 	    ECHO(new WebCallBuilder()
 		                .method(Method.POST)
 		                .addRequiredType(String.class)
 		                .addRequiredType(UserId.class)
 		                .withDecorator(String.class, BodyFromString.class)
-		                .path(&quot;/users/&lcub;&lcub;userid&rcub;&rcub;/echo&quot;).responseType(String.class));
+		                .path(&quot;/users/{{userid}}/echo&quot;).responseType(String.class));
 
 	    private final WebCall call;
-	    TestAPI(WebCallBuilder bldr) &lcub;
+	    TestAPI(WebCallBuilder bldr) {
 		call = bldr.id(this).build();
-	    &rcub;
+	    }
 
-	    public WebCall get() &lcub;
+	    public WebCall get() {
 		return call;
-	    &rcub;
-	&rcub;
+	    }
+	}
 
 ##Calling The Web API
 How do we use it?  Very simply.  First, we need an instance of an
@@ -132,12 +132,12 @@ optionally be overridden).
 Under the hood, what happens is this:
 
  * We look up the <i>path template</i> tied to this web call - in
-this case ``/users/&lcub;&lcub;userid&rcub;&rcub;/hello``.  The ``&lcub;&lcub;userid&rcub;&rcub;``
+this case ``/users/{{userid}}/hello``.  The ``{{userid}}``
 part will be substituted.  Fancy substitutions are possible by
 writing your own ``Interpolator``,
 but "userid" matches the lower case name of the class ``UserId`` - 
 and we passed one in.  So its <code>toString()</code> is called, and
-"&lcub;&lcub;userid&rcub;&rcub;" is replaced with "tim".
+"{{userid}}" is replaced with "tim".
 
  * When we created the call, you may have noticed the line
 ``.withDecorator(DisplayName.class, ParameterFromClassNameAndToStringCamelCase.class)``.
