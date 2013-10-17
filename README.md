@@ -13,13 +13,33 @@ To call a web API, you invoke that web API, passing in the arguments it needs
 as a free-form array of objects plus a callback which will be invoked with the
 result.  E.g.
 
-    ECHO(new WebCallBuilder()
-        .method(Method.POST)
-        .addRequiredType(String.class)
-        .addRequiredType(UserId.class)
-        .withDecorator(String.class, BodyFromString.class)
-        .path("/users/{{userid}}/echo").responseType(String.class));
+public enum TestAPI implements WebCallEnum {
+    HELLO_WORLD(new WebCallBuilder()
+                        .method(Method.GET)
+                        .addRequiredType(UserId.class)
+                        .withDecorator(DisplayName.class, ParameterFromClassNameAndToStringCamelCase.class)
+                        .path("/users/{{userid}}/hello").responseType(Map.class)),
+    ...
+}
 
+That defines an HTTP call which issues a ``GET`` request;  a portion of the URL
+is templated - it will be gotten from calling ``toString()`` on a ``UserId`` object
+(i.e. some application specific class).  The API wants a URL parameter called
+"displayName" - we map that to ``toString()`` on an instance of ``DisplayName`` - 
+this could be any type of our own creation (and we could unmarshal it some other
+way than ``toString()``).  The response will be unmarshalled from JSON into a Map - 
+but we could use any type Jackson can handle here.
+
+So to call it, we do 
+
+	    Invoker&lt;TestAPI&gt; invoker = Invoker.create(URL.parse("http://server.example"), 
+		TestAPI.class);
+
+To receive a call back with the response, we implement the ``Callback`` interface,
+and then call
+
+	ResponseFuture f = invoker.call(TestAPI.HELLO_WORLD, myCallback, 
+		    new DisplayName("Tim Boudreau"), new UserId("tim"));
 
 ## Background
 
