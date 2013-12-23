@@ -1,7 +1,7 @@
 package com.mastfrog.webapi;
 
+import com.mastfrog.acteur.headers.Method;
 import com.mastfrog.webapi.builtin.BodyFromString;
-import com.mastfrog.acteur.util.Method;
 import com.mastfrog.webapi.builtin.ParameterFromClassNameAndToStringCamelCase;
 import java.util.Map;
 

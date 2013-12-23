@@ -1,7 +1,7 @@
 package com.mastfrog.webapi;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mastfrog.acteur.util.Method;
+import com.mastfrog.acteur.headers.Method;
 import com.mastfrog.giulius.Dependencies;
 import com.mastfrog.util.ConfigurationError;
 import java.util.HashSet;

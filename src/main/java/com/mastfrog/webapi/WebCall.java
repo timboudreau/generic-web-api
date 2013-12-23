@@ -1,6 +1,6 @@
 package com.mastfrog.webapi;
 
-import com.mastfrog.acteur.util.Method;
+import com.mastfrog.acteur.headers.Method;
 import com.mastfrog.giulius.Dependencies;
 
 /**

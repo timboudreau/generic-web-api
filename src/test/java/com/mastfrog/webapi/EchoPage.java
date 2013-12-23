@@ -7,7 +7,7 @@ import com.mastfrog.acteur.Event;
 import com.mastfrog.acteur.HttpEvent;
 import com.mastfrog.acteur.Page;
 import com.mastfrog.acteur.ResponseWriter;
-import com.mastfrog.acteur.util.Method;
+import com.mastfrog.acteur.headers.Method;
 import static io.netty.handler.codec.http.HttpResponseStatus.OK;
 import java.io.IOException;
 

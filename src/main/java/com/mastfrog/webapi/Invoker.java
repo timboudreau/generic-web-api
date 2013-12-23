@@ -1,13 +1,12 @@
 package com.mastfrog.webapi;
 
-import com.mastfrog.webapi.builtin.Parameters;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.inject.AbstractModule;
 import com.google.inject.Inject;
 import com.google.inject.Key;
 import com.google.inject.name.Names;
+import com.mastfrog.acteur.headers.Headers;
 import com.mastfrog.acteur.util.BasicCredentials;
-import com.mastfrog.acteur.util.Headers;
 import com.mastfrog.giulius.Dependencies;
 import com.mastfrog.guicy.scope.ReentrantScope;
 import com.mastfrog.netty.http.client.HttpClient;
@@ -20,6 +19,7 @@ import com.mastfrog.url.URL;
 import com.mastfrog.url.URLBuilder;
 import com.mastfrog.util.Exceptions;
 import com.mastfrog.util.thread.Receiver;
+import com.mastfrog.webapi.builtin.Parameters;
 import io.netty.handler.codec.http.FullHttpResponse;
 import io.netty.handler.codec.http.HttpResponse;
 import io.netty.handler.codec.http.HttpResponseStatus;

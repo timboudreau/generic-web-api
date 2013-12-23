@@ -6,7 +6,7 @@ import com.mastfrog.acteur.Acteur;
 import com.mastfrog.acteur.ActeurFactory;
 import com.mastfrog.acteur.HttpEvent;
 import com.mastfrog.acteur.Page;
-import com.mastfrog.acteur.util.Method;
+import com.mastfrog.acteur.headers.Method;
 import java.util.Map;
 
 /**
