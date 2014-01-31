@@ -10,6 +10,7 @@ import com.mastfrog.acteur.HttpEvent;
 import com.mastfrog.acteur.Page;
 import com.mastfrog.acteur.server.ServerModule;
 import com.mastfrog.acteur.headers.Method;
+import com.mastfrog.acteur.util.RequestID;
 import io.netty.channel.Channel;
 import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.HttpResponse;
@@ -47,11 +48,10 @@ class TestApiApplication extends Application {
     }
 
     @Override
-    public CountDownLatch onEvent(Event<?> event, Channel channel) {
+    protected void onBeforeEvent(RequestID id, Event<?> event) {
         System.out.println("ON EVENT " + ((HttpEvent)event).getMethod() + " path '" + ((HttpEvent)event).getPath() + "'");
         System.out.println("URI: " + ((FullHttpRequest) event.getRequest()).getUri());
 
-        return super.onEvent(event, channel); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
