@@ -22,7 +22,6 @@ public class WebCallBuilder {
     private Decorators decorators = new Decorators();
     private Interpolators interpolators = new Interpolators();
     private boolean stayOpen;
-    private Class<?> type = Void.class;
     private boolean hasBody = true;
     private Class<? extends Interpreter> interpreter;
 
@@ -158,19 +157,6 @@ public class WebCallBuilder {
     }
 
     /**
-     * The response type. May be superseded by the type on the Callback passed
-     * to the web call
-     *
-     * @param type A type
-     * @return
-     * @deprecated
-     */
-    public WebCallBuilder responseType(Class<?> type) {
-        this.type = type;
-        return this;
-    }
-
-    /**
      * Determine whether to expect a response body. If false, the system may opt
      * to close the connection and call the callback as soon as headers have
      * been received.
@@ -212,7 +198,7 @@ public class WebCallBuilder {
         }
         return new WebCallImpl(id, method, path, requiredTypes,
                 authenticationRequired, decorators, interpolators, stayOpen,
-                type, hasBody, interpreter);
+                /*type,*/ hasBody, interpreter);
     }
 
     private static class WebCallImpl implements WebCall {
@@ -225,11 +211,10 @@ public class WebCallBuilder {
         private final Decorators decorators;
         private final Interpolators interpolators;
         private final boolean stayOpen;
-        private final Class<?> type;
         private final boolean hasBody;
         private final Class<? extends Interpreter> interpreter;
 
-        public WebCallImpl(Enum<?> id, Method method, String path, Set<Class<?>> requiredTypes, boolean authenticationRequired, Decorators decorators, Interpolators interpolators, boolean stayOpen, Class<?> type, boolean hasBody, Class<? extends Interpreter> interpreter) {
+        public WebCallImpl(Enum<?> id, Method method, String path, Set<Class<?>> requiredTypes, boolean authenticationRequired, Decorators decorators, Interpolators interpolators, boolean stayOpen, /*Class<?> type, */boolean hasBody, Class<? extends Interpreter> interpreter) {
             this.id = id;
             this.method = method;
             this.path = path;
@@ -239,7 +224,6 @@ public class WebCallBuilder {
             this.interpolators = interpolators;
             this.stayOpen = stayOpen;
             this.interpreter = interpreter;
-            this.type = type;
             this.hasBody = hasBody;
         }
 
@@ -281,11 +265,6 @@ public class WebCallBuilder {
         @Override
         public boolean isStayOpen() {
             return stayOpen;
-        }
-
-        @Override
-        public Class<?> responseType() {
-            return type;
         }
 
         @Override

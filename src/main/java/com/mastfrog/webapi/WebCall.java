@@ -78,8 +78,6 @@ public interface WebCall {
      */
     boolean isStayOpen();
 
-    Class<?> responseType();
-    
     <T, R extends Interpolator<T>> Class<R> interpolator(Class<T> type);
     
     Interpreter interpreter(Dependencies deps);

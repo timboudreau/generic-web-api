@@ -15,13 +15,13 @@ public enum TestAPI implements WebCallEnum {
                         .method(Method.GET)
                         .addRequiredType(UserId.class)
                         .withDecorator(DisplayName.class, ParameterFromClassNameAndToStringCamelCase.class)
-                        .path("/users/{{userid}}/hello").responseType(Map.class)),
+                        .path("/users/{{userid}}/hello")),
     ECHO(new WebCallBuilder()
                         .method(Method.POST)
                         .addRequiredType(String.class)
                         .addRequiredType(UserId.class)
                         .withDecorator(String.class, BodyFromString.class)
-                        .path("/users/{{userid}}/echo").responseType(String.class));
+                        .path("/users/{{userid}}/echo"));
 
     private final WebCall call;
     TestAPI(WebCallBuilder bldr) {
