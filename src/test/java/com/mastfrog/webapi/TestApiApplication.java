@@ -50,7 +50,7 @@ class TestApiApplication extends Application {
     @Override
     protected void onBeforeEvent(RequestID id, Event<?> event) {
         System.out.println("ON EVENT " + ((HttpEvent)event).getMethod() + " path '" + ((HttpEvent)event).getPath() + "'");
-        System.out.println("URI: " + ((FullHttpRequest) event.getRequest()).getUri());
+        System.out.println("URI: " + ((FullHttpRequest) event.getRequest()).uri());
 
     }
 
@@ -62,7 +62,7 @@ class TestApiApplication extends Application {
 
     @Override
     protected HttpResponse decorateResponse(Event<?> event, Page page, Acteur action, HttpResponse response) {
-        System.out.println("RESPONSE " + response.getStatus() + " for " + ((HttpEvent)event).getPath());
+        System.out.println("RESPONSE " + response.status() + " for " + ((HttpEvent)event).getPath());
         return super.decorateResponse(event, page, action, response); //To change body of generated methods, choose Tools | Templates.
     }
 

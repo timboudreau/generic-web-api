@@ -155,8 +155,8 @@ public class Invoker<T extends Enum<T> & WebCallEnum> {
             reqb.on(State.HeadersReceived.class, new Receiver<HttpResponse>() {
                 @Override
                 public void receive(HttpResponse object) {
-                    callback.responseReceived(object.getStatus(), object.headers());
-                    if (HttpResponseStatus.NOT_MODIFIED.equals(object.getStatus())) {
+                    callback.responseReceived(object.status(), object.headers());
+                    if (HttpResponseStatus.NOT_MODIFIED.equals(object.status())) {
                         callback.notModified(object.headers());
                     }
                 }
@@ -166,20 +166,20 @@ public class Invoker<T extends Enum<T> & WebCallEnum> {
                 @Override
                 public void receive(FullHttpResponse resp) {
                     try (AutoCloseable ac = scope.enter(combine(args, wc, call))) {
-                        if (resp.getStatus().code() < 299 && resp.getStatus().code() > 199) {
+                        if (resp.status().code() < 299 && resp.status().code() > 199) {
                             Interpreter inter = wc.interpreter(deps);
                             if (inter == null) {
                                 inter = new DefaultResponseInterceptor(mapper);
                             }
                             try {
-                                T obj = inter.interpret(resp.getStatus(), resp.headers(), resp.content(), callback.type());
+                                T obj = inter.interpret(resp.status(), resp.headers(), resp.content(), callback.type());
                                 callback.success(obj);
                             } catch (Exception ex) {
                                 callback.error(ex);
                                 Exceptions.printStackTrace(ex);
                             }
                         } else {
-                            callback.fail(resp.getStatus(), resp.content());
+                            callback.fail(resp.status(), resp.content());
                         }
                     } catch (Exception e) {
                         callback.error(e);
