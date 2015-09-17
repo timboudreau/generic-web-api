@@ -40,7 +40,7 @@ public class WebCallTest {
         CB cb = new CB();
         ResponseFuture f = invoker.call(TestAPI.HELLO_WORLD, cb, new DisplayName("Tim Boudreau"), new UserId("tim"), new Integer(23), new Short((short) 5), Boolean.TRUE);
 
-        f.await(3, TimeUnit.SECONDS);
+        f.await(5, TimeUnit.SECONDS);
         f.throwIfError();
         assertNotNull(cb.obj);
         assertEquals("tim", cb.obj.get("name"));
