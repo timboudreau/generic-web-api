@@ -55,7 +55,7 @@ class DefaultResponseInterceptor extends Interpreter {
         }
         try {
             ByteBufInputStream in = new ByteBufInputStream(contents);
-            return mapper.readValue(in, as);
+            return mapper.readValue((InputStream)in, as);
         } catch (JsonMappingException | JsonParseException ex) {
             contents.resetReaderIndex();
             String s = new String(toBytes(contents), CharsetUtil.UTF_8);
