@@ -34,7 +34,7 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.mastfrog</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>scopes</artifactId>
         </dependency>
     </dependencies>
