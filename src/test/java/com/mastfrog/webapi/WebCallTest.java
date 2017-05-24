@@ -121,7 +121,7 @@ public class WebCallTest {
             install(new WebApiModule(TestAPI.class));
             bind(URL.class).toInstance(URL.parse("http://localhost:3729"));
 //            bind(URL.class).toInstance(URL.parse("http://localhost:9333"));
-            bind(HttpClient.class).toInstance(HttpClient.builder().followRedirects().build());
+            bind(HttpClient.class).toInstance(HttpClient.builder().noCompression().followRedirects().build());
         }
     }
 }
