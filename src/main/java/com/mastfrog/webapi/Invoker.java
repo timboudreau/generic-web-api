@@ -8,7 +8,7 @@ import com.google.inject.name.Names;
 import com.mastfrog.acteur.headers.Headers;
 import com.mastfrog.acteur.util.BasicCredentials;
 import com.mastfrog.giulius.Dependencies;
-import com.mastfrog.guicy.scope.ReentrantScope;
+import com.mastfrog.giulius.scope.ReentrantScope;
 import com.mastfrog.netty.http.client.HttpClient;
 import com.mastfrog.netty.http.client.HttpClientBuilder;
 import com.mastfrog.netty.http.client.HttpRequestBuilder;
