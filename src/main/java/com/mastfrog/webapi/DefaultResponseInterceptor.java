@@ -3,6 +3,7 @@ package com.mastfrog.webapi;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.inject.Inject;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufInputStream;
 import io.netty.handler.codec.http.HttpHeaders;
@@ -22,6 +23,7 @@ class DefaultResponseInterceptor extends Interpreter {
 
     private final ObjectMapper mapper;
 
+    @Inject
     DefaultResponseInterceptor(ObjectMapper mapper) {
         this.mapper = mapper;
     }
@@ -35,7 +37,7 @@ class DefaultResponseInterceptor extends Interpreter {
     }
     
     @Override
-    protected <T> T interpret(HttpResponseStatus status, HttpHeaders headers, ByteBuf contents, Class<T> as) throws Exception {
+    public <T> T interpret(HttpResponseStatus status, HttpHeaders headers, ByteBuf contents, Class<T> as) throws Exception {
         if (as == Void.class) {
             return null;
         }

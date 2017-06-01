@@ -1,5 +1,6 @@
 package com.mastfrog.webapi;
 
+import com.google.inject.ImplementedBy;
 import io.netty.buffer.ByteBuf;
 import io.netty.handler.codec.http.HttpHeaders;
 import io.netty.handler.codec.http.HttpResponseStatus;
@@ -10,9 +11,10 @@ import io.netty.handler.codec.http.HttpResponseStatus;
  *
  * @author Tim Boudreau
  */
+@ImplementedBy(DefaultResponseInterceptor.class)
 public abstract class Interpreter {
 
-    protected abstract <T> T interpret(HttpResponseStatus status,
+    public abstract <T> T interpret(HttpResponseStatus status,
             HttpHeaders headers, ByteBuf contents, Class<T> as) throws Exception;
 
 }

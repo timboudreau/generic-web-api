@@ -1,9 +1,9 @@
 package com.mastfrog.webapi.builtin;
 
 import com.mastfrog.netty.http.client.HttpRequestBuilder;
+import com.mastfrog.util.time.Interval;
 import com.mastfrog.webapi.Decorator;
 import com.mastfrog.webapi.WebCall;
-import org.joda.time.Interval;
 
 /**
  * Example
