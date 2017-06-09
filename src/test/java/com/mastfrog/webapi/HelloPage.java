@@ -28,8 +28,8 @@ public class HelloPage extends Page {
         @Inject
         HelloActeur(HttpEvent evt) {
             System.out.println("Create a hello acteur");
-            String dn = evt.getParameter("displayName");
-            String un = evt.getPath().getElement(1).toString();
+            String dn = evt.urlParameter("displayName");
+            String un = evt.path().getElement(1).toString();
             Map<?,?> m = ImmutableMap.builder().put("name", un).put("displayName", dn).put("message", "Hello " + dn).build();
             setState(new RespondWith(200, m));
         }

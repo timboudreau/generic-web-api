@@ -49,20 +49,20 @@ class TestApiApplication extends Application {
 
     @Override
     protected void onBeforeEvent(RequestID id, Event<?> event) {
-        System.out.println("ON EVENT " + ((HttpEvent)event).getMethod() + " path '" + ((HttpEvent)event).getPath() + "'");
-        System.out.println("URI: " + ((FullHttpRequest) event.getRequest()).getUri());
+        System.out.println("ON EVENT " + ((HttpEvent)event).method() + " path '" + ((HttpEvent)event).path() + "'");
+        System.out.println("URI: " + ((FullHttpRequest) event.request()).getUri());
 
     }
 
     @Override
     protected HttpResponse createNotFoundResponse(Event<?> event) {
-        System.out.println("RESPONSE " + 404 + " for " + ((HttpEvent)event).getPath());
+        System.out.println("RESPONSE " + 404 + " for " + ((HttpEvent)event).path());
         return super.createNotFoundResponse(event); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     protected HttpResponse decorateResponse(Event<?> event, Page page, Acteur action, HttpResponse response) {
-        System.out.println("RESPONSE " + response.getStatus() + " for " + ((HttpEvent)event).getPath());
+        System.out.println("RESPONSE " + response.getStatus() + " for " + ((HttpEvent)event).path());
         return super.decorateResponse(event, page, action, response); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -30,7 +30,7 @@ public class EchoPage extends Page {
 
         @Inject
         EchoActeur(HttpEvent evt) throws IOException {
-//            String body = evt.getContentAsJSON(String.class);
+//            String body = evt.jsonContent(String.class);
 //            System.out.println("GOT BODY: " + body);
 //            setState(new RespondWith(OK, body + body + body));
             setState(new RespondWith(OK));
@@ -44,7 +44,7 @@ public class EchoPage extends Page {
 
         @Inject
         EchoWriter(HttpEvent evt, ContentConverter cvt) throws IOException {
-            body = cvt.toObject(evt.getContent(), MediaType.PLAIN_TEXT_UTF_8, String.class);
+            body = cvt.toObject(evt.content(), MediaType.PLAIN_TEXT_UTF_8, String.class);
             System.out.println("GOT BODY: " + body);
         }
 
