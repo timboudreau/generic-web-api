@@ -43,7 +43,7 @@ public class EchoPage extends Page {
         private final String body;
 
         @Inject
-        EchoWriter(HttpEvent evt, ContentConverter cvt) throws IOException {
+        EchoWriter(HttpEvent evt, ContentConverter cvt) throws Exception {
             body = cvt.toObject(evt.content(), MediaType.PLAIN_TEXT_UTF_8, String.class);
             System.out.println("GOT BODY: " + body);
         }
