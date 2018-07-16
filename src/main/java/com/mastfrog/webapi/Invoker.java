@@ -17,7 +17,7 @@ import com.mastfrog.netty.http.client.State;
 import com.mastfrog.url.Path;
 import com.mastfrog.url.URL;
 import com.mastfrog.url.URLBuilder;
-import com.mastfrog.util.Exceptions;
+import com.mastfrog.util.preconditions.Exceptions;
 import com.mastfrog.util.thread.Receiver;
 import com.mastfrog.webapi.builtin.Parameters;
 import io.netty.handler.codec.http.FullHttpResponse;

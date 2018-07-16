@@ -1,6 +1,5 @@
 package com.mastfrog.webapi;
 
-import com.mastfrog.util.Parameterized;
 import io.netty.buffer.ByteBuf;
 import io.netty.handler.codec.http.HttpHeaders;
 import io.netty.handler.codec.http.HttpResponseStatus;
@@ -10,7 +9,7 @@ import io.netty.handler.codec.http.HttpResponseStatus;
  *
  * @author Tim Boudreau
  */
-public abstract class Callback<T> implements Parameterized<T> {
+public abstract class Callback<T> {
 
     private final Class<T> type;
 
@@ -59,7 +58,6 @@ public abstract class Callback<T> implements Parameterized<T> {
     public void responseReceived(HttpResponseStatus status, HttpHeaders headers) {
     }
 
-    @Override
     public final Class<T> type() {
         return type;
     }
