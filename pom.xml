@@ -38,7 +38,10 @@
             <artifactId>scopes</artifactId>
         </dependency>
     </dependencies>
-    <url>https://github.com/timboudreau/generic-web-api</url>
+    <issueManagement>
+        <system>Github</system>
+        <url>https://github.com/timboudreau/generic-web-api/issues</url>
+    </issueManagement>
     <scm>
         <url>https://github.com/timboudreau/generic-web-api</url>
         <connection>scm:git:https://github.com/timboudreau/generic-web-api.git</connection>
