@@ -27,4 +27,7 @@ open module com.mastfrog.generic.web.api {
     requires java.desktop;
     requires java.logging;
 
+    // Inferred from test-source-scan
+    requires transitive junit;
+
 }
