@@ -1,10 +1,10 @@
 package com.mastfrog.webapi;
 
-import com.mastfrog.webapi.builtin.Parameters;
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
-import com.mastfrog.acteur.util.BasicCredentials;
+import com.mastfrog.acteur.header.entities.BasicCredentials;
 import com.mastfrog.giulius.scope.ReentrantScope;
+import com.mastfrog.webapi.builtin.Parameters;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;

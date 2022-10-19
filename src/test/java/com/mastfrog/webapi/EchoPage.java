@@ -1,6 +1,5 @@
 package com.mastfrog.webapi;
 
-import com.google.common.net.MediaType;
 import com.google.inject.Inject;
 import com.mastfrog.acteur.Acteur;
 import com.mastfrog.acteur.ActeurFactory;
@@ -10,6 +9,7 @@ import com.mastfrog.acteur.HttpEvent;
 import com.mastfrog.acteur.Page;
 import com.mastfrog.acteur.ResponseWriter;
 import com.mastfrog.acteur.headers.Method;
+import com.mastfrog.mime.MimeType;
 import static io.netty.handler.codec.http.HttpResponseStatus.OK;
 import java.io.IOException;
 
@@ -44,7 +44,7 @@ public class EchoPage extends Page {
 
         @Inject
         EchoWriter(HttpEvent evt, ContentConverter cvt) throws Exception {
-            body = cvt.toObject(evt.content(), MediaType.PLAIN_TEXT_UTF_8, String.class);
+            body = cvt.toObject(evt.content(), MimeType.PLAIN_TEXT_UTF_8, String.class);
             System.out.println("GOT BODY: " + body);
         }
 

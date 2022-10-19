@@ -38,7 +38,7 @@ public class WebCallTest {
         server.start(3729);
 
         CB cb = new CB();
-        ResponseFuture f = invoker.call(TestAPI.HELLO_WORLD, cb, new DisplayName("Tim Boudreau"), new UserId("tim"), new Integer(23), new Short((short) 5), Boolean.TRUE);
+        ResponseFuture f = invoker.call(TestAPI.HELLO_WORLD, cb, new DisplayName("Tim Boudreau"), new UserId("tim"), Integer.valueOf(23), Short.valueOf((short) 5), Boolean.TRUE);
 
         f.await(5, TimeUnit.SECONDS);
         f.throwIfError();

@@ -24,7 +24,7 @@
 
 package com.mastfrog.webapi.builtin;
 
-import com.google.common.net.MediaType;
+import com.mastfrog.mime.MimeType;
 import com.mastfrog.netty.http.client.HttpRequestBuilder;
 import com.mastfrog.webapi.Decorator;
 import com.mastfrog.webapi.WebCall;
@@ -39,6 +39,6 @@ public class BodyFromMap implements Decorator<Map> {
 
     @Override
     public void decorate(WebCall call, HttpRequestBuilder builder, Map obj, Class<Map> type) throws IOException {
-        builder.setBody(obj, MediaType.JSON_UTF_8);
+        builder.setBody(obj, MimeType.JSON_UTF_8);
     }
 }

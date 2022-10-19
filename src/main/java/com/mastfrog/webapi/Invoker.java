@@ -5,8 +5,8 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Inject;
 import com.google.inject.Key;
 import com.google.inject.name.Names;
+import com.mastfrog.acteur.header.entities.BasicCredentials;
 import com.mastfrog.acteur.headers.Headers;
-import com.mastfrog.acteur.util.BasicCredentials;
 import com.mastfrog.giulius.Dependencies;
 import com.mastfrog.giulius.scope.ReentrantScope;
 import com.mastfrog.netty.http.client.HttpClient;
@@ -155,7 +155,7 @@ public class Invoker<T extends Enum<T> & WebCallEnum> {
             reqb.on(State.HeadersReceived.class, new Receiver<HttpResponse>() {
                 @Override
                 public void receive(HttpResponse object) {
-                    callback.responseReceived(object.getStatus(), object.headers());
+                    callback.responseReceived(object.status(), object.headers());
                     if (HttpResponseStatus.NOT_MODIFIED.equals(object.getStatus())) {
                         callback.notModified(object.headers());
                     }
@@ -166,7 +166,7 @@ public class Invoker<T extends Enum<T> & WebCallEnum> {
                 @Override
                 public void receive(FullHttpResponse resp) {
                     try (AutoCloseable ac = scope.enter(combine(args, wc, call))) {
-                        if (resp.getStatus().code() < 299 && resp.getStatus().code() > 199) {
+                        if (resp.status().code() < 299 && resp.status().code() > 199) {
                             Interpreter inter = wc.interpreter(deps);
                             if (inter == null) {
                                 inter = new DefaultResponseInterceptor(mapper);

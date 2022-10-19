@@ -1,6 +1,6 @@
 package com.mastfrog.webapi.builtin;
 
-import com.google.common.net.MediaType;
+import com.mastfrog.mime.MimeType;
 import com.mastfrog.netty.http.client.HttpRequestBuilder;
 import com.mastfrog.webapi.Decorator;
 import com.mastfrog.webapi.WebCall;
@@ -16,6 +16,6 @@ public final class BodyFromString implements Decorator<String> {
 
     @Override
     public void decorate(WebCall call, HttpRequestBuilder builder, String obj, Class<String> type) throws IOException {
-        builder.setBody(obj, MediaType.PLAIN_TEXT_UTF_8);
+        builder.setBody(obj, MimeType.PLAIN_TEXT_UTF_8);
     }
 }
