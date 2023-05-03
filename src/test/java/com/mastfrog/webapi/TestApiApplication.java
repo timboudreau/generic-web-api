@@ -60,12 +60,6 @@ class TestApiApplication extends Application {
         return super.createNotFoundResponse(event); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    protected HttpResponse decorateResponse(Event<?> event, Page page, Acteur action, HttpResponse response) {
-        System.out.println("RESPONSE " + response.getStatus() + " for " + ((HttpEvent)event).path());
-        return super.decorateResponse(event, page, action, response); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public static class Module extends AbstractModule {
 
         Module() {
